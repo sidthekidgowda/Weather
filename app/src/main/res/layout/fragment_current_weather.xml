@@ -48,12 +48,21 @@
 			app:emptyVisible="@{viewBinder.isEmpty}"
 			app:layout_constraintTop_toBottomOf="@id/et_input" />
 
+		<include
+			layout="@layout/view_current_weather_error"
+			android:id="@+id/view_current_weather_error"
+			android:layout_height="200dp"
+			android:layout_width="match_parent"
+			android:layout_marginTop="8dp"
+			app:errorVisible="@{viewBinder.isError}"
+			app:layout_constraintTop_toBottomOf="@id/et_input" />
+
 		<androidx.constraintlayout.widget.Barrier
 			android:id="@+id/content_barrier"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			app:barrierDirection="bottom"
-			app:constraint_referenced_ids="view_current_weather_available,view_current_weather_empty" />
+			app:constraint_referenced_ids="view_current_weather_available,view_current_weather_empty, view_current_weather_error" />
 
 		<com.google.android.material.button.MaterialButton
 			android:id="@+id/btn_refresh"
