@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="date"
+            type="String" />
+        <variable
+            name="minTemp"
+            type="String" />
+        <variable
+            name="maxTemp"
+            type="String" />
+        <variable
+            name="windSpeed"
+            type="String" />
+        <variable
+            name="condition"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/date(date)}"
+            android:layout_marginTop="4dp"
+            tools:text="Date: 2021-08-05" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/min_temperature(minTemp)}"
+            tools:text="Min Temperature: 78.2 F" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/max_temperature(maxTemp)}"
+            tools:text="Max Temperature: 95.1 F" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{String.format(@string/wind_speed, windSpeed)}"
+            tools:text="Wind Speed: 6.5 MPH" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{String.format(@string/condition, condition)}"
+            tools:text="Condition: Sunny"/>
+
+    </LinearLayout>
+</layout>

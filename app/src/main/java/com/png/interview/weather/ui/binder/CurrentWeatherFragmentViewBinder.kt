@@ -7,7 +7,8 @@ import com.png.interview.weather.ui.viewmodel.CurrentWeatherViewModel
 class CurrentWeatherFragmentViewBinder(
     private val viewModel: CurrentWeatherViewModel,
     private val activity: Activity,
-    private val settingsAction: () -> Unit
+    private val settingsAction: () -> Unit,
+    private val forecastAction: (query: String) -> Unit
 ) {
 
     val availableWeatherViewData = viewModel.availableCurrentWeatherLiveData
@@ -21,7 +22,7 @@ class CurrentWeatherFragmentViewBinder(
     }
 
     fun seeForecastClicked() {
-        Toast.makeText(activity, "Forecast Clicked TODO", Toast.LENGTH_LONG).show()
+        forecastAction(input)
     }
 
     fun settingsClicked() {
