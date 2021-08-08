@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	<data>
+		<variable
+			name="viewData"
+			type="com.png.interview.weather.ui.model.AvailableWeatherViewData" />
+	</data>
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:visible="@{viewData != null}"
+		tools:padding="16dp">
+
+		<TextView
+			android:id="@+id/tv_header"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/current_weather"
+			android:textSize="18sp"
+			android:textStyle="bold"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+
+		<TextView
+			style="@style/TextViewLabelStyle"
+			android:id="@+id/tv_name_label"
+			android:text="@string/name"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tv_header"/>
+
+		<TextView
+			style="@style/TextViewValueStyle"
+			android:id="@+id/tv_name_value"
+			android:text="@{viewData.name}"
+			app:layout_constraintStart_toEndOf="@id/tv_name_label"
+			app:layout_constraintTop_toTopOf="@id/tv_name_label"
+			app:layout_constraintBottom_toBottomOf="@id/tv_name_label"
+			tools:text="Syracuse"/>
+
+		<TextView
+			style="@style/TextViewLabelStyle"
+			android:id="@+id/tv_time_label"
+			android:text="@string/local_time"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tv_name_label"/>
+
+		<TextView
+			style="@style/TextViewValueStyle"
+			android:id="@+id/tv_time_value"
+			android:text="@{viewData.date}"
+			app:layout_constraintStart_toEndOf="@id/tv_time_label"
+			app:layout_constraintTop_toTopOf="@id/tv_time_label"
+			app:layout_constraintBottom_toBottomOf="@id/tv_time_label"
+			tools:text="8-21-2021 7:00 pm"/>
+
+		<TextView
+			style="@style/TextViewLabelStyle"
+			android:id="@+id/tv_temp_label"
+			android:text="@string/temp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tv_time_label"/>
+
+		<TextView
+			style="@style/TextViewValueStyle"
+			android:id="@+id/tv_temp_value"
+			android:text="@{viewData.temperature}"
+			app:layout_constraintStart_toEndOf="@id/tv_temp_label"
+			app:layout_constraintTop_toTopOf="@id/tv_temp_label"
+			app:layout_constraintBottom_toBottomOf="@id/tv_temp_label"
+			tools:text="95F"/>
+
+		<TextView
+			style="@style/TextViewLabelStyle"
+			android:id="@+id/tv_condition"
+			android:text="@string/condition"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tv_temp_label"/>
+
+		<TextView
+			style="@style/TextViewValueStyle"
+			android:id="@+id/tv_condition_value"
+			android:text="@{viewData.condition}"
+			app:layout_constraintStart_toEndOf="@id/tv_condition"
+			app:layout_constraintTop_toTopOf="@id/tv_condition"
+			app:layout_constraintBottom_toBottomOf="@id/tv_condition"
+			tools:text="Partly Cloudy"/>
+
+		<TextView
+			style="@style/TextViewLabelStyle"
+			android:id="@+id/tv_wind_direction"
+			android:text="@string/wind_direction"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tv_condition"/>
+
+		<TextView
+			style="@style/TextViewValueStyle"
+			android:id="@+id/tv_wind_direction_value"
+			android:text="@{viewData.windDirection}"
+			app:layout_constraintStart_toEndOf="@id/tv_wind_direction"
+			app:layout_constraintTop_toTopOf="@id/tv_wind_direction"
+			app:layout_constraintBottom_toBottomOf="@id/tv_wind_direction"
+			tools:text="N"/>
+
+		<TextView
+			style="@style/TextViewLabelStyle"
+			android:id="@+id/tv_wind_speed"
+			android:text="@string/wind_speed"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/tv_wind_direction"/>
+
+		<TextView
+			style="@style/TextViewValueStyle"
+			android:id="@+id/tv_wind_speed_value"
+			android:text="@{viewData.windSpeed}"
+			app:layout_constraintStart_toEndOf="@id/tv_wind_speed"
+			app:layout_constraintTop_toTopOf="@id/tv_wind_speed"
+			app:layout_constraintBottom_toBottomOf="@id/tv_wind_speed"
+			tools:text="15 MPH"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

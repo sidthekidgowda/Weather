@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<data>
+		<variable
+			name="viewBinder"
+			type="com.png.interview.weather.ui.binder.CurrentWeatherFragmentViewBinder" />
+	</data>
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="8dp">
+
+		<EditText
+			android:id="@+id/et_input"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:hint="@string/enter_zip_or_city"
+			android:text="@={viewBinder.input}"
+			app:layout_constraintEnd_toStartOf="@id/btn_go"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent"/>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btn_go"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/go"
+			android:onClick="@{() -> viewBinder.goClicked()}"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintEnd_toEndOf="parent" />
+
+		<include
+			layout="@layout/view_current_weather_available"
+			android:id="@+id/view_current_weather_available"
+			android:layout_height="200dp"
+			android:layout_width="match_parent"
+			android:layout_marginTop="8dp"
+			app:viewData="@{viewBinder.availableWeatherViewData}"
+			app:layout_constraintTop_toBottomOf="@id/et_input"/>
+
+		<include
+			layout="@layout/view_current_weather_empty"
+			android:id="@+id/view_current_weather_empty"
+			android:layout_height="200dp"
+			android:layout_width="match_parent"
+			android:layout_marginTop="8dp"
+			app:emptyVisible="@{viewBinder.isEmpty}"
+			app:layout_constraintTop_toBottomOf="@id/et_input" />
+
+		<androidx.constraintlayout.widget.Barrier
+			android:id="@+id/content_barrier"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			app:barrierDirection="bottom"
+			app:constraint_referenced_ids="view_current_weather_available,view_current_weather_empty" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btn_refresh"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="@string/refresh"
+			android:onClick="@{() -> viewBinder.refreshClicked()}"
+			android:layout_marginEnd="4dp"
+			app:visible="@{viewBinder.availableWeatherViewData != null}"
+			app:layout_goneMarginTop="16dp"
+			app:layout_constraintEnd_toStartOf="@id/btn_forecast"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/content_barrier"/>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btn_forecast"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="@string/see_forecast"
+			android:layout_marginStart="4dp"
+			android:onClick="@{() -> viewBinder.seeForecastClicked()}"
+			app:visible="@{viewBinder.availableWeatherViewData != null}"
+			app:layout_goneMarginTop="16dp"
+			app:layout_constraintStart_toEndOf="@id/btn_refresh"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/content_barrier"/>
+
+		<com.google.android.material.button.MaterialButton
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:onClick="@{() -> viewBinder.settingsClicked()}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			android:text="@string/settings" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<shape android:shape="rectangle">
+			<size android:height="72dp" android:width="72dp" />
+			<corners android:radius="36dp" />
+			<gradient android:startColor="@color/purple_01" android:endColor="@color/purple_02" android:angle="0"/>
+		</shape>
+	</item>
+
+	<item android:drawable="@drawable/ic_network_connection_error" android:gravity="center" />
+</layer-list>
