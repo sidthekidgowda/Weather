@@ -17,7 +17,7 @@ class CurrentWeatherFragmentViewBinder(
     var input: String = ""
 
     fun refreshClicked() {
-        Toast.makeText(activity, "Refresh Clicked TODO", Toast.LENGTH_LONG).show()
+        viewModel.submitCurrentWeatherSearch(input)
     }
 
     fun seeForecastClicked() {

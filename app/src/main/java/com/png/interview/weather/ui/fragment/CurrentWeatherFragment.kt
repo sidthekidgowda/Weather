@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.png.interview.databinding.FragmentCurrentWeatherBinding
 import com.png.interview.ui.InjectedFragment
 import com.png.interview.weather.ui.binder.CurrentWeatherFragmentViewBinder
-import kotlinx.android.synthetic.main.activity_main.mainNavigationFragment
 
 class CurrentWeatherFragment : InjectedFragment() {
 

@@ -10,6 +10,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Qualifier
@@ -20,6 +21,7 @@ class CommonApiModule {
     @Provides
     fun provideOkHttpClient(app: Application): OkHttpClient.Builder {
         val builder = OkHttpClient.Builder()
+            .addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         return builder
     }
 
