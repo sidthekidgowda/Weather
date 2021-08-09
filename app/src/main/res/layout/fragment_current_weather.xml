@@ -5,6 +5,9 @@
 		<variable
 			name="viewBinder"
 			type="com.png.interview.weather.ui.binder.CurrentWeatherFragmentViewBinder" />
+		<variable
+			name="isImperial"
+			type="Boolean" />
 	</data>
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
@@ -37,6 +40,7 @@
 			android:layout_width="match_parent"
 			android:layout_marginTop="8dp"
 			app:viewData="@{viewBinder.availableWeatherViewData}"
+			app:isImperial="@{isImperial}"
 			app:layout_constraintTop_toBottomOf="@id/et_input"/>
 
 		<include

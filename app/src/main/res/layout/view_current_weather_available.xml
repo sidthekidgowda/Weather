@@ -6,6 +6,9 @@
 		<variable
 			name="viewData"
 			type="com.png.interview.weather.ui.model.AvailableWeatherViewData" />
+		<variable
+			name="isImperial"
+			type="Boolean" />
 	</data>
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
@@ -65,7 +68,7 @@
 		<TextView
 			style="@style/TextViewValueStyle"
 			android:id="@+id/tv_temp_value"
-			android:text="@{viewData.temperatureF}"
+			android:text="@{isImperial ? viewData.temperatureF : viewData.temperatureC }"
 			app:layout_constraintStart_toEndOf="@id/tv_temp_label"
 			app:layout_constraintTop_toTopOf="@id/tv_temp_label"
 			app:layout_constraintBottom_toBottomOf="@id/tv_temp_label"
@@ -113,7 +116,7 @@
 		<TextView
 			style="@style/TextViewValueStyle"
 			android:id="@+id/tv_wind_speed_value"
-			android:text="@{viewData.windSpeedMPH}"
+			android:text="@{isImperial ? viewData.windSpeedMPH : viewData.windSpeedKPH}"
 			app:layout_constraintStart_toEndOf="@id/tv_wind_speed"
 			app:layout_constraintTop_toTopOf="@id/tv_wind_speed"
 			app:layout_constraintBottom_toBottomOf="@id/tv_wind_speed"

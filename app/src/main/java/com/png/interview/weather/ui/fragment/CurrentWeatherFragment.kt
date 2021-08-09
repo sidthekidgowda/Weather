@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.png.interview.databinding.FragmentCurrentWeatherBinding
 import com.png.interview.ui.InjectedFragment
 import com.png.interview.weather.ui.binder.CurrentWeatherFragmentViewBinder
+import com.png.interview.weather.ui.isImperial
 
 class CurrentWeatherFragment : InjectedFragment() {
 
@@ -21,8 +22,9 @@ class CurrentWeatherFragment : InjectedFragment() {
                 },
                 forecastAction = { query ->
                     findNavController().navigate(CurrentWeatherFragmentDirections.actionCurrentWeatherFragmentToForecastFragment(query))
-                }
+                },
             )
+            isImperial = sharedPreferences.isImperial()
             this.lifecycleOwner = viewLifecycleOwner
         }.root
     }
