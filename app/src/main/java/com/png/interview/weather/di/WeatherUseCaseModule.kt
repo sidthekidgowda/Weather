@@ -1,9 +1,6 @@
 package com.png.interview.weather.di
 
-import com.png.interview.weather.domain.CreateCurrentWeatherRepFromQueryUseCase
-import com.png.interview.weather.domain.DefaultCreateCurrentWeatherRepFromQueryUseCase
-import com.png.interview.weather.domain.DefaultGetCurrentWeatherDataUseCase
-import com.png.interview.weather.domain.GetCurrentWeatherDataUseCase
+import com.png.interview.weather.domain.*
 import dagger.Binds
 import dagger.Module
 
@@ -15,4 +12,10 @@ abstract class WeatherUseCaseModule {
 
     @Binds
     abstract fun bindsGetCurrentWeatherRepUseCase(usecase: DefaultCreateCurrentWeatherRepFromQueryUseCase): CreateCurrentWeatherRepFromQueryUseCase
+
+    @Binds
+    abstract fun bindsGetForecastDataUseCase(usecase: GetForecastDataUseCaseImpl): GetForecastDataUseCase
+
+    @Binds
+    abstract fun bindsGetForecastFromQueryUseCase(usecase: CreateForecastFromQueryUseCaseImpl): CreateForecastFromQueryUseCase
 }

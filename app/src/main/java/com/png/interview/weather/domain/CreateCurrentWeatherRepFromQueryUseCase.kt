@@ -3,8 +3,6 @@ package com.png.interview.weather.domain
 import com.png.interview.api.common_model.NetworkResponse
 import com.png.interview.weather.ui.model.AvailableWeatherViewData
 import com.png.interview.weather.ui.model.CurrentWeatherViewRepresentation
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 interface CreateCurrentWeatherRepFromQueryUseCase {
@@ -21,10 +19,12 @@ class DefaultCreateCurrentWeatherRepFromQueryUseCase @Inject constructor(
                     AvailableWeatherViewData(
                         name = result.body.location.name,
                         date = result.body.location.localtime,
-                        temperature = "${result.body.current.temp_f} F",
+                        temperatureF = "${result.body.current.temp_f} F",
+                        temperatureC = "${result.body.current.temp_c} C",
                         condition = result.body.current.condition.text,
                         windDirection = result.body.current.wind_dir,
-                        windSpeed = "${result.body.current.gust_mph} MPH"
+                        windSpeedMPH = "${result.body.current.gust_mph} MPH",
+                        windSpeedKPH = "${result.body.current.gust_kph} KPH",
                     )
                 )
             }

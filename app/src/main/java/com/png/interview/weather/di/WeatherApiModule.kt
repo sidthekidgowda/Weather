@@ -9,6 +9,7 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Named
 
 @Module
 class WeatherApiModule {
@@ -43,6 +44,10 @@ class WeatherApiModule {
             .baseUrl(BASE_URL)
             .build()
             .create(WeatherApi::class.java)
+
+    @Provides
+    @Named("forecast_days")
+    fun providesForecastDays(): Int = 3
 
     companion object {
         private const val BASE_URL = "http://api.weatherapi.com/v1/"

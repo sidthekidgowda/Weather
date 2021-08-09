@@ -7,6 +7,10 @@ class ForecastFragmentViewBinder(
     private val query: String
 ) {
 
+    val forecastViewData = viewModel.forecastData
+    val isLoading = viewModel.isLoadingVisible
+    val isError = viewModel.isErrorVisible
+
     init {
         viewModel.retrieveForecast(query)
     }

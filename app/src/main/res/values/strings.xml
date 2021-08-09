@@ -27,8 +27,9 @@
 	<string name="units">Units</string>
 	<string name="name">Name</string>
 	<string name="view_current_weather_error">Error occurred retrieving weather information</string>
-	<string name="date">Date: %1$</string>
+	<string name="forecast_date">Date: %1$s</string>
 	<string name="min_temperature">Min Temperature: %1$s</string>
 	<string name="max_temperature">Max Temperature: %1$s</string>
+	<string name="space">\u0020</string>
 
 </resources>

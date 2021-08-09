@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/date(date)}"
+            android:text="@{@string/forecast_date(date)}"
             android:layout_marginTop="4dp"
             tools:text="Date: 2021-08-05" />
 
@@ -51,14 +51,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{String.format(@string/wind_speed, windSpeed)}"
+            android:text="@{@string/wind_speed.concat(@string/space).concat(windSpeed)}"
             tools:text="Wind Speed: 6.5 MPH" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{String.format(@string/condition, condition)}"
+            android:text="@{@string/condition.concat(@string/space).concat(condition)}"
             tools:text="Condition: Sunny"/>
 
     </LinearLayout>

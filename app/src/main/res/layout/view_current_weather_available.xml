@@ -65,7 +65,7 @@
 		<TextView
 			style="@style/TextViewValueStyle"
 			android:id="@+id/tv_temp_value"
-			android:text="@{viewData.temperature}"
+			android:text="@{viewData.temperatureF}"
 			app:layout_constraintStart_toEndOf="@id/tv_temp_label"
 			app:layout_constraintTop_toTopOf="@id/tv_temp_label"
 			app:layout_constraintBottom_toBottomOf="@id/tv_temp_label"
@@ -113,7 +113,7 @@
 		<TextView
 			style="@style/TextViewValueStyle"
 			android:id="@+id/tv_wind_speed_value"
-			android:text="@{viewData.windSpeed}"
+			android:text="@{viewData.windSpeedMPH}"
 			app:layout_constraintStart_toEndOf="@id/tv_wind_speed"
 			app:layout_constraintTop_toTopOf="@id/tv_wind_speed"
 			app:layout_constraintBottom_toBottomOf="@id/tv_wind_speed"
