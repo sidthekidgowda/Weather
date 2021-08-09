@@ -18,22 +18,24 @@ class CurrentWeatherFragmentViewBinder(
     var input: String = ""
 
     fun refreshClicked() {
-        viewModel.submitCurrentWeatherSearch(input)
+        viewModel.submitCurrentWeatherSearch(currentWeatherLocation())
     }
 
     fun seeForecastClicked() {
-        // if back button is clicked from forecast, edit text is empty
-        // and so is input
-        val query = if (input.isEmpty()) {
-            availableWeatherViewData.value?.name ?: input
-        } else {
-            input
-        }
-        forecastAction(query)
+        forecastAction(currentWeatherLocation())
     }
 
     fun settingsClicked() {
         settingsAction()
+    }
+
+    // if back button is clicked from forecast, edit text is empty
+    // and so is input. We cannot refresh or see forecast from input,
+    // so use the current weather location
+    private fun currentWeatherLocation(): String = if (input.isEmpty()) {
+        availableWeatherViewData.value?.name ?: input
+    } else {
+        input
     }
 
     fun goClicked() {
