@@ -22,7 +22,14 @@ class CurrentWeatherFragmentViewBinder(
     }
 
     fun seeForecastClicked() {
-        forecastAction(input)
+        // if back button is clicked from forecast, edit text is empty
+        // and so is input
+        val query = if (input.isEmpty()) {
+            availableWeatherViewData.value?.name ?: input
+        } else {
+            input
+        }
+        forecastAction(query)
     }
 
     fun settingsClicked() {

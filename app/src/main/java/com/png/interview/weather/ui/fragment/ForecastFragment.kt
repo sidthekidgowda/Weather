@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.png.interview.databinding.FragmentForecastBinding
 import com.png.interview.ui.InjectedFragment
 import com.png.interview.weather.ui.adapter.ForecastListAdapter
+import com.png.interview.weather.ui.adapter.SpacesItemDecoration
 import com.png.interview.weather.ui.binder.ForecastFragmentViewBinder
 
 class ForecastFragment : InjectedFragment() {
@@ -30,7 +31,10 @@ class ForecastFragment : InjectedFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val forecastListAdapter = ForecastListAdapter()
-        binding.forecastList.adapter = forecastListAdapter
+        binding.forecastList.apply {
+            adapter = forecastListAdapter
+            addItemDecoration(SpacesItemDecoration())
+        }
         binding.viewBinder?.forecastViewData?.observe(viewLifecycleOwner) { forecastData ->
             forecastData?.let {
                 forecastListAdapter.submitList(it)
