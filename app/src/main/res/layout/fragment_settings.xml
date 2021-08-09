@@ -33,11 +33,13 @@
 			app:layout_constraintEnd_toEndOf="parent">
 
 			<RadioButton
+				android:id="@+id/imperial_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/imperial" />
 
 			<RadioButton
+				android:id="@+id/metric_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/metric" />

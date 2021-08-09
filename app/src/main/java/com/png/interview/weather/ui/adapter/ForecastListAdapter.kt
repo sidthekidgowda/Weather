@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.png.interview.databinding.ForecastListItemBinding
 import com.png.interview.weather.ui.model.ForecastViewData
 
-class ForecastListAdapter : ListAdapter<ForecastViewData, ForecastListAdapter.ForecastViewHolder>(
+class ForecastListAdapter(
+    private val isImperial: Boolean
+) : ListAdapter<ForecastViewData, ForecastListAdapter.ForecastViewHolder>(
     object : DiffUtil.ItemCallback<ForecastViewData>() {
         override fun areItemsTheSame(
             oldItem: ForecastViewData,
@@ -36,15 +38,15 @@ class ForecastListAdapter : ListAdapter<ForecastViewData, ForecastListAdapter.Fo
     }
 
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), isImperial)
     }
 
     class ForecastViewHolder(private val binding: ForecastListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(forecastData: ForecastViewData) {
+        fun bind(forecastData: ForecastViewData, isImperial: Boolean) {
             binding.date = forecastData.date
-            binding.maxTemp = forecastData.maxTempF
-            binding.minTemp = forecastData.minTempF
-            binding.windSpeed = forecastData.windSpeedMPH
+            binding.maxTemp = if (isImperial) forecastData.maxTempF else forecastData.maxTempC
+            binding.minTemp = if (isImperial) forecastData.minTempF else forecastData.minTempC
+            binding.windSpeed = if (isImperial) forecastData.windSpeedMPH else forecastData.windSpeedKPH
             binding.condition = forecastData.condition
         }
     }

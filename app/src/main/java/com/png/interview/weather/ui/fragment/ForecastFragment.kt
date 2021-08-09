@@ -10,6 +10,7 @@ import com.png.interview.ui.InjectedFragment
 import com.png.interview.weather.ui.adapter.ForecastListAdapter
 import com.png.interview.weather.ui.adapter.SpacesItemDecoration
 import com.png.interview.weather.ui.binder.ForecastFragmentViewBinder
+import com.png.interview.weather.ui.isImperial
 
 class ForecastFragment : InjectedFragment() {
 
@@ -30,7 +31,7 @@ class ForecastFragment : InjectedFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val forecastListAdapter = ForecastListAdapter()
+        val forecastListAdapter = ForecastListAdapter(sharedPreferences.isImperial())
         binding.forecastList.apply {
             adapter = forecastListAdapter
             addItemDecoration(SpacesItemDecoration())
