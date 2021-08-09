@@ -40,21 +40,23 @@
 			app:layout_constraintTop_toBottomOf="@id/et_input"/>
 
 		<include
-			layout="@layout/view_current_weather_empty"
+			layout="@layout/loading_empty_error_text"
 			android:id="@+id/view_current_weather_empty"
 			android:layout_height="200dp"
 			android:layout_width="match_parent"
 			android:layout_marginTop="8dp"
-			app:emptyVisible="@{viewBinder.isEmpty}"
+			app:isVisible="@{viewBinder.isEmpty}"
+			app:text="@{@string/please_enter_zip_or_city}"
 			app:layout_constraintTop_toBottomOf="@id/et_input" />
 
 		<include
-			layout="@layout/view_current_weather_error"
+			layout="@layout/loading_empty_error_text"
 			android:id="@+id/view_current_weather_error"
 			android:layout_height="200dp"
 			android:layout_width="match_parent"
 			android:layout_marginTop="8dp"
-			app:errorVisible="@{viewBinder.isError}"
+			app:isVisible="@{viewBinder.isError}"
+			app:text="@{@string/weather_error}"
 			app:layout_constraintTop_toBottomOf="@id/et_input" />
 
 		<androidx.constraintlayout.widget.Barrier

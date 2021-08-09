@@ -17,6 +17,12 @@ object CommonBindingAdapter {
         view.visibility = if (visible) VISIBLE else GONE
     }
 
+    @BindingAdapter("text")
+    @JvmStatic
+    fun setText(textView: TextView, text: String) {
+        textView.text = text
+    }
+
     @JvmStatic
     @BindingAdapter("isStartGravity")
     fun setGravityStartAligned(view: TextView, isStartAligned: Boolean) {
