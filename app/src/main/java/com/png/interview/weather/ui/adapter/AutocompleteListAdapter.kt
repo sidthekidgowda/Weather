@@ -44,9 +44,7 @@ class AutocompleteListAdapter : ListAdapter<AutocompleteViewData, AutocompleteLi
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(autocompleteViewData: AutocompleteViewData) {
-            binding.location =
-                "${autocompleteViewData.name}, ${autocompleteViewData.region}, ${autocompleteViewData.country}"
+            binding.location = autocompleteViewData.name
         }
-
     }
 }

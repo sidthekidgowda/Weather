@@ -42,9 +42,7 @@ class CurrentWeatherFragment : InjectedFragment() {
         val autocompleteListAdapter = AutocompleteListAdapter()
         binding.viewAutocompleteList.autocompleteList.adapter = autocompleteListAdapter
         binding.etInput.doOnTextChanged { text, start, before, count ->
-            if (text.toString().count() > 3) {
-                viewModel.autoCompleteListSearch(text.toString())
-            }
+            viewModel.autoCompleteListSearch(text.toString())
         }
         binding.viewBinder?.autocompleteListData?.observe(viewLifecycleOwner) { locations ->
             locations?.let {

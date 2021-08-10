@@ -58,7 +58,7 @@
 			android:layout_height="200dp"
 			android:layout_width="match_parent"
 			android:layout_marginTop="8dp"
-			app:isVisible="@{!viewBinder.isAutocompleteViewVisible()}"
+			app:isVisible="@{viewBinder.isEmpty}"
 			app:text="@{@string/please_enter_zip_or_city}"
 			app:layout_constraintTop_toBottomOf="@id/et_input" />
 

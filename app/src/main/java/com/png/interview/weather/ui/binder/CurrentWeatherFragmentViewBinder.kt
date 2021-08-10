@@ -2,6 +2,7 @@ package com.png.interview.weather.ui.binder
 
 import android.app.Activity
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import com.png.interview.weather.ui.utils.hideKeyboard
 import com.png.interview.weather.ui.viewmodel.CurrentWeatherViewModel
 
@@ -18,19 +19,20 @@ class CurrentWeatherFragmentViewBinder(
     val isEmpty = viewModel.isEmptyVisible
     val isError = viewModel.isErrorVisible
 
-    var input: String = viewModel.currentQuery()
+    val input: MutableLiveData<String> = MutableLiveData("")
 
     private fun fetchCurrentWeather() {
-        viewModel.setCurrentQuery(input)
-        viewModel.submitCurrentWeatherSearch(input)
+        viewModel.setCurrentLocation(input.value!!)
+        viewModel.submitCurrentWeatherSearch(input.value!!)
+        input.value = ""
     }
 
     fun refreshClicked() {
-        viewModel.submitCurrentWeatherSearch(viewModel.currentQuery())
+        viewModel.submitCurrentWeatherSearch(viewModel.currentLocation())
     }
 
     fun seeForecastClicked() {
-        forecastAction(viewModel.currentQuery())
+        forecastAction(viewModel.currentLocation())
         activity.hideKeyboard()
     }
 
@@ -39,9 +41,9 @@ class CurrentWeatherFragmentViewBinder(
     }
 
     fun goClicked() {
-        if (input.isEmpty()) {
+        if (input.value!!.isEmpty()) {
             Toast.makeText(activity, "Please Enter Query", Toast.LENGTH_LONG).show()
-        } else if (input.length < 3) {
+        } else if (input.value!!.length < 3) {
             Toast.makeText(activity, "Please Enter More than 3 Characters", Toast.LENGTH_LONG).show()
         } else {
             fetchCurrentWeather()

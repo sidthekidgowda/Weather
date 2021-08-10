@@ -4,4 +4,5 @@ sealed class CurrentWeatherViewRepresentation {
     class AvailableWeatherViewRep(val data: AvailableWeatherViewData) : CurrentWeatherViewRepresentation()
     object Empty : CurrentWeatherViewRepresentation()
     object Error : CurrentWeatherViewRepresentation()
+    object AutocompleteInProcess : CurrentWeatherViewRepresentation()
 }
