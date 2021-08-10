@@ -15,11 +15,18 @@ class CurrentWeatherViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _currentWeatherViewRepresentation = MutableStateFlow<CurrentWeatherViewRepresentation>(CurrentWeatherViewRepresentation.Empty)
+    private val _currentQuery = MutableStateFlow("")
 
     fun submitCurrentWeatherSearch(query: String) {
         viewModelScope.launch {
             _currentWeatherViewRepresentation.value = createCurrentWeatherRepFromQueryUseCase(query)
         }
+    }
+
+    fun currentQuery() = _currentQuery.value
+
+    fun setCurrentQuery(query: String) {
+        _currentQuery.value = query
     }
 
     val availableCurrentWeatherLiveData =

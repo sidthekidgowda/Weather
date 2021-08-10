@@ -2,6 +2,7 @@ package com.png.interview.weather.ui.binder
 
 import android.app.Activity
 import android.widget.Toast
+import com.png.interview.weather.ui.utils.hideKeyboard
 import com.png.interview.weather.ui.viewmodel.CurrentWeatherViewModel
 
 class CurrentWeatherFragmentViewBinder(
@@ -15,27 +16,24 @@ class CurrentWeatherFragmentViewBinder(
     val isEmpty = viewModel.isEmptyVisible
     val isError = viewModel.isErrorVisible
 
-    var input: String = ""
+    var input: String = viewModel.currentQuery()
+
+    private fun fetchCurrentWeather() {
+        viewModel.setCurrentQuery(input)
+        viewModel.submitCurrentWeatherSearch(input)
+    }
 
     fun refreshClicked() {
-        viewModel.submitCurrentWeatherSearch(currentWeatherLocation())
+        viewModel.submitCurrentWeatherSearch(viewModel.currentQuery())
     }
 
     fun seeForecastClicked() {
-        forecastAction(currentWeatherLocation())
+        forecastAction(viewModel.currentQuery())
+        activity.hideKeyboard()
     }
 
     fun settingsClicked() {
         settingsAction()
-    }
-
-    // if back button is clicked from forecast, edit text is empty
-    // and so is input. We cannot refresh or see forecast from input,
-    // so use the current weather location
-    private fun currentWeatherLocation(): String = if (input.isEmpty()) {
-        availableWeatherViewData.value?.name ?: input
-    } else {
-        input
     }
 
     fun goClicked() {
@@ -44,7 +42,7 @@ class CurrentWeatherFragmentViewBinder(
         } else if (input.length < 3) {
             Toast.makeText(activity, "Please Enter More than 3 Characters", Toast.LENGTH_LONG).show()
         } else {
-            viewModel.submitCurrentWeatherSearch(input)
+            fetchCurrentWeather()
         }
     }
 }
