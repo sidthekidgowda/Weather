@@ -19,7 +19,7 @@ class CurrentWeatherFragmentViewBinder(
     val isEmpty = viewModel.isEmptyVisible
     val isError = viewModel.isErrorVisible
 
-    val input: MutableLiveData<String> = MutableLiveData("")
+    val input = MutableLiveData("")
 
     private fun fetchCurrentWeather() {
         viewModel.setCurrentLocation(input.value!!)

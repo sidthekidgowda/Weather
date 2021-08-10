@@ -70,6 +70,4 @@ class CurrentWeatherViewModel @Inject constructor(
         _autocompleteListViewRepresentation
             .map { !(it is AutocompleteListViewRepresentation.Empty) }
             .asLiveData()
-
-    val input = _currentQuery.asLiveData()
 }

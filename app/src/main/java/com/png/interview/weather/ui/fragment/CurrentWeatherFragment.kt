@@ -18,8 +18,8 @@ class CurrentWeatherFragment : InjectedFragment() {
     private lateinit var binding: FragmentCurrentWeatherBinding
     private lateinit var viewModel: CurrentWeatherViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewModel = getViewModel() as CurrentWeatherViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewModel = getViewModel()
         binding = FragmentCurrentWeatherBinding.inflate(inflater, container,false).apply {
             viewBinder = CurrentWeatherFragmentViewBinder(
                 viewModel,
