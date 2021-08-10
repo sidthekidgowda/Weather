@@ -18,7 +18,7 @@ class CurrentWeatherFragment : InjectedFragment() {
     private lateinit var binding: FragmentCurrentWeatherBinding
     private lateinit var viewModel: CurrentWeatherViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewModel = getViewModel()
         binding = FragmentCurrentWeatherBinding.inflate(inflater, container,false).apply {
             viewBinder = CurrentWeatherFragmentViewBinder(
@@ -42,6 +42,7 @@ class CurrentWeatherFragment : InjectedFragment() {
         val autocompleteListAdapter = AutocompleteListAdapter()
         binding.viewAutocompleteList.autocompleteList.adapter = autocompleteListAdapter
         binding.etInput.doOnTextChanged { text, start, before, count ->
+            if (text.toString().length == 0) return@doOnTextChanged
             viewModel.autoCompleteListSearch(text.toString())
         }
         binding.viewBinder?.autocompleteListData?.observe(viewLifecycleOwner) { locations ->
