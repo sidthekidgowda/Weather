@@ -34,6 +34,15 @@
 			app:layout_constraintEnd_toEndOf="parent" />
 
 		<include
+			layout="@layout/autocomplete_view"
+			android:id="@+id/view_autocomplete_list"
+			android:layout_height="200dp"
+			android:layout_width="match_parent"
+			android:layout_marginTop="8dp"
+			app:isVisible="@{viewBinder.isAutocompleteViewVisible}"
+			app:layout_constraintTop_toBottomOf="@id/et_input" />
+
+		<include
 			layout="@layout/view_current_weather_available"
 			android:id="@+id/view_current_weather_available"
 			android:layout_height="200dp"
@@ -41,7 +50,7 @@
 			android:layout_marginTop="8dp"
 			app:viewData="@{viewBinder.availableWeatherViewData}"
 			app:isImperial="@{isImperial}"
-			app:layout_constraintTop_toBottomOf="@id/et_input"/>
+			app:layout_constraintTop_toBottomOf="@id/et_input" />
 
 		<include
 			layout="@layout/loading_empty_error_text"
@@ -49,7 +58,7 @@
 			android:layout_height="200dp"
 			android:layout_width="match_parent"
 			android:layout_marginTop="8dp"
-			app:isVisible="@{viewBinder.isEmpty}"
+			app:isVisible="@{!viewBinder.isAutocompleteViewVisible()}"
 			app:text="@{@string/please_enter_zip_or_city}"
 			app:layout_constraintTop_toBottomOf="@id/et_input" />
 
@@ -68,7 +77,7 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			app:barrierDirection="bottom"
-			app:constraint_referenced_ids="view_current_weather_available,view_current_weather_empty, view_current_weather_error" />
+			app:constraint_referenced_ids="view_current_weather_available, view_autocomplete_list, view_current_weather_empty, view_current_weather_error" />
 
 		<com.google.android.material.button.MaterialButton
 			android:id="@+id/btn_refresh"

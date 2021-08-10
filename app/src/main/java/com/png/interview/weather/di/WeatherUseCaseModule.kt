@@ -18,4 +18,10 @@ abstract class WeatherUseCaseModule {
 
     @Binds
     abstract fun bindsGetForecastFromQueryUseCase(usecase: CreateForecastFromQueryUseCaseImpl): CreateForecastFromQueryUseCase
+
+    @Binds
+    abstract fun bindsCreateAutocompleteListOfLocationsUseCase(usecase: CreateAutocompleteListOfLocationsUseCaseImpl): CreateAutocompleteListOfLocationsUseCase
+
+    @Binds
+    abstract fun bindsGetAutocompleteListOfLocationsUseCase(usecase: GetAutocompleteListOfLocationsUseCaseImpl): GetAutocompleteListOfLocationsUseCase
 }

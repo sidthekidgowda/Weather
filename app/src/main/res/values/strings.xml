@@ -32,4 +32,5 @@
 	<string name="max_temperature">Max Temperature: %1$s</string>
 	<string name="space">\u0020</string>
 	<string name="loading">Loading ...</string>
+	<string name="autocomplete">Autocomplete</string>
 </resources>

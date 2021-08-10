@@ -15,7 +15,7 @@ class SettingsFragment : InjectedFragment() {
         const val METRIC_BUTTON = "metric_button"
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return FragmentSettingsBinding.inflate(inflater, container, false).apply {
             viewBinder = SettingsFragmentViewBinder(sharedPreferences)
             this.lifecycleOwner = viewLifecycleOwner
