@@ -40,6 +40,12 @@ class CurrentWeatherFragmentViewBinder(
         settingsAction()
     }
 
+    fun onAutocompleteLocationClicked(location: String) {
+        input.value = ""
+        viewModel.setCurrentLocation(location)
+        viewModel.submitCurrentWeatherSearch(location)
+    }
+
     fun goClicked() {
         if (input.value!!.isEmpty()) {
             Toast.makeText(activity, "Please Enter Query", Toast.LENGTH_LONG).show()

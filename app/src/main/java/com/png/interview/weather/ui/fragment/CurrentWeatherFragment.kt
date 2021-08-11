@@ -10,9 +10,9 @@ import com.png.interview.databinding.FragmentCurrentWeatherBinding
 import com.png.interview.ui.InjectedFragment
 import com.png.interview.weather.ui.adapter.AutocompleteListAdapter
 import com.png.interview.weather.ui.binder.CurrentWeatherFragmentViewBinder
-import com.png.interview.weather.ui.handler.AutocompleteHandlerImpl
 import com.png.interview.weather.ui.isImperial
 import com.png.interview.weather.ui.viewmodel.CurrentWeatherViewModel
+import java.lang.IllegalStateException
 
 class CurrentWeatherFragment : InjectedFragment() {
 
@@ -40,7 +40,10 @@ class CurrentWeatherFragment : InjectedFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val autocompleteListAdapter = AutocompleteListAdapter(handler = AutocompleteHandlerImpl(viewModel))
+        val autocompleteListAdapter = AutocompleteListAdapter(
+            viewBinder = binding.viewBinder
+                ?: throw IllegalStateException("ViewBinder cannot be null")
+        )
         binding.viewAutocompleteList.autocompleteList.adapter = autocompleteListAdapter
         binding.etInput.doOnTextChanged { text, start, before, count ->
             if (text.toString().length == 0) return@doOnTextChanged

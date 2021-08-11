@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.png.interview.databinding.AutocompleteListItemBinding
-import com.png.interview.weather.ui.handler.AutocompleteHandler
+import com.png.interview.weather.ui.binder.CurrentWeatherFragmentViewBinder
 import com.png.interview.weather.ui.model.AutocompleteViewData
 
 class AutocompleteListAdapter(
-    private val handler: AutocompleteHandler
+    private val viewBinder: CurrentWeatherFragmentViewBinder
 ) : ListAdapter<AutocompleteViewData, AutocompleteListAdapter.AutocompleteViewHolder>(
     object : DiffUtil.ItemCallback<AutocompleteViewData>() {
         override fun areItemsTheSame(
@@ -39,7 +39,7 @@ class AutocompleteListAdapter(
     }
 
     override fun onBindViewHolder(holder: AutocompleteViewHolder, position: Int) {
-        holder.bind(getItem(position), handler)
+        holder.bind(getItem(position), viewBinder)
     }
 
     class AutocompleteViewHolder(
@@ -48,9 +48,9 @@ class AutocompleteListAdapter(
 
         fun bind(
             autocompleteViewData: AutocompleteViewData,
-            handler: AutocompleteHandler
+            viewBinder: CurrentWeatherFragmentViewBinder
         ) {
-            binding.handler = handler
+            binding.viewBinder = viewBinder
             binding.location = autocompleteViewData.name
         }
     }
