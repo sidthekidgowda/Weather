@@ -46,6 +46,8 @@ class CurrentWeatherViewModel @Inject constructor(
     }
 
     fun autoCompleteListSearch(query: String) {
+        // don't make duplicate network calls when back button is clicked
+        if (query == _currentQuery.value && query.isNotEmpty()) return
         _currentQuery.value = query
         _currentWeatherViewRepresentation.value = calculateCurrentWeatherState()
         if (query.length < AUTOCOMPLETE_CHARACTER_MIN_LIMIT) {
