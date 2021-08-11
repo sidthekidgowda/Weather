@@ -7,7 +7,7 @@ import com.png.interview.weather.ui.utils.hideKeyboard
 import com.png.interview.weather.ui.viewmodel.CurrentWeatherViewModel
 
 class CurrentWeatherFragmentViewBinder(
-    val viewModel: CurrentWeatherViewModel,
+    private val viewModel: CurrentWeatherViewModel,
     private val activity: Activity,
     private val settingsAction: () -> Unit,
     private val forecastAction: (query: String) -> Unit
@@ -19,7 +19,6 @@ class CurrentWeatherFragmentViewBinder(
     val isAutocompleteListError = viewModel.isAutocompleteListError
     val isEmpty = viewModel.isEmptyVisible
     val isError = viewModel.isErrorVisible
-
     val input = MutableLiveData("")
 
     private fun fetchCurrentWeather() {
