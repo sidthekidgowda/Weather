@@ -23,6 +23,14 @@ class CurrentWeatherViewModel @Inject constructor(
 
     fun submitCurrentWeatherSearch(query: String) {
         _autocompleteListViewRepresentation.value = AutocompleteListViewRepresentation.Empty
+        fetchCurrentWeather(query)
+    }
+
+    fun refresh() {
+        fetchCurrentWeather(currentLocation())
+    }
+
+    private fun fetchCurrentWeather(query: String) {
         viewModelScope.launch {
             _currentWeatherViewRepresentation.value = createCurrentWeatherRepFromQueryUseCase(query)
         }
@@ -30,14 +38,23 @@ class CurrentWeatherViewModel @Inject constructor(
 
     fun autoCompleteListSearch(query: String) {
         _currentQuery.value = query
+        _currentWeatherViewRepresentation.value = calculateCurrentWeatherState()
         if (query.length <= 3) {
             _autocompleteListViewRepresentation.value = AutocompleteListViewRepresentation.Empty
-            _currentWeatherViewRepresentation.value = CurrentWeatherViewRepresentation.Empty
         } else {
-            _currentWeatherViewRepresentation.value = CurrentWeatherViewRepresentation.AutocompleteInProcess
             viewModelScope.launch {
                 _autocompleteListViewRepresentation.value = createAutocompleteListOfLocationsUseCase(query)
             }
+        }
+    }
+
+    private fun calculateCurrentWeatherState(): CurrentWeatherViewRepresentation {
+        return if (_currentWeatherViewRepresentation.value is CurrentWeatherViewRepresentation.AvailableWeatherViewRep){
+            _currentWeatherViewRepresentation.value
+        } else if (_currentQuery.value.length >= 3) {
+            CurrentWeatherViewRepresentation.AutocompleteInProcess
+        } else {
+            CurrentWeatherViewRepresentation.Empty
         }
     }
 

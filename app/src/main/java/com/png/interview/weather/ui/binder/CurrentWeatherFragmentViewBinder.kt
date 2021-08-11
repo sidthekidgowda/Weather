@@ -28,7 +28,7 @@ class CurrentWeatherFragmentViewBinder(
     }
 
     fun refreshClicked() {
-        viewModel.submitCurrentWeatherSearch(viewModel.currentLocation())
+        viewModel.refresh()
     }
 
     fun seeForecastClicked() {
