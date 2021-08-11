@@ -26,12 +26,6 @@ class CurrentWeatherFragmentViewBinder(
         viewModel.reset()
     }
 
-    private fun fetchCurrentWeather() {
-        viewModel.setCurrentLocation(input.value!!)
-        viewModel.submitCurrentWeatherSearch(input.value!!)
-        input.value = ""
-    }
-
     fun refreshClicked() {
         viewModel.refresh()
     }
@@ -46,9 +40,7 @@ class CurrentWeatherFragmentViewBinder(
     }
 
     fun onAutocompleteLocationClicked(location: String) {
-        input.value = ""
-        viewModel.setCurrentLocation(location)
-        viewModel.submitCurrentWeatherSearch(location)
+        fetchCurrentWeather(location)
     }
 
     fun goClicked() {
@@ -57,7 +49,14 @@ class CurrentWeatherFragmentViewBinder(
         } else if (input.value!!.length < 3) {
             Toast.makeText(activity, "Please Enter More than 3 Characters", Toast.LENGTH_LONG).show()
         } else {
-            fetchCurrentWeather()
+            fetchCurrentWeather(input.value!!)
         }
+    }
+
+    private fun fetchCurrentWeather(query: String) {
+        viewModel.setCurrentLocation(query)
+        viewModel.submitCurrentWeatherSearch(query)
+        input.value = ""
+        activity.hideKeyboard()
     }
 }
