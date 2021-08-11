@@ -94,7 +94,8 @@ class CurrentWeatherViewModel @Inject constructor(
 
     val isAutocompleteListVisible =
         _autocompleteListViewRepresentation
-            .map { !(it is AutocompleteListViewRepresentation.Empty) }
+            .map { !(it is AutocompleteListViewRepresentation.Empty) &&
+                    _currentQuery.value.length >= AUTOCOMPLETE_CHARACTER_MIN_LIMIT }
             .asLiveData()
 
     val isAutocompleteListError =

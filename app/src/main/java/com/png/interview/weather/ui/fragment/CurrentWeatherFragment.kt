@@ -11,6 +11,7 @@ import com.png.interview.ui.InjectedFragment
 import com.png.interview.weather.ui.adapter.AutocompleteListAdapter
 import com.png.interview.weather.ui.binder.CurrentWeatherFragmentViewBinder
 import com.png.interview.weather.ui.isImperial
+import com.png.interview.weather.ui.utils.isNumber
 import com.png.interview.weather.ui.viewmodel.CurrentWeatherViewModel
 import java.lang.IllegalStateException
 
@@ -48,7 +49,8 @@ class CurrentWeatherFragment : InjectedFragment() {
         binding.etInput.doOnTextChanged { text, start, before, count ->
             // ignore when back button is clicked from settings or forecast.
             // editText listener still triggers old text
-            if (before == 0) return@doOnTextChanged
+            // Additionally, @param[before] does not update for Number input
+            if (before == 0 && !text.toString().isNumber()) return@doOnTextChanged
             viewModel.autoCompleteListSearch(text.toString())
         }
 
