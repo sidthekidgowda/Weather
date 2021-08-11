@@ -14,6 +14,10 @@ class CurrentWeatherViewModel @Inject constructor(
     private val createAutocompleteListOfLocationsUseCase: CreateAutocompleteListOfLocationsUseCase
 ) : ViewModel() {
 
+    companion object {
+        private const val AUTOCOMPLETE_CHARACTER_MIN_LIMIT = 3
+    }
+
     private val _currentWeatherViewRepresentation =
         MutableStateFlow<CurrentWeatherViewRepresentation>(CurrentWeatherViewRepresentation.Empty)
     private val _autocompleteListViewRepresentation =
@@ -44,7 +48,7 @@ class CurrentWeatherViewModel @Inject constructor(
     fun autoCompleteListSearch(query: String) {
         _currentQuery.value = query
         _currentWeatherViewRepresentation.value = calculateCurrentWeatherState()
-        if (query.length <= 3) {
+        if (query.length < AUTOCOMPLETE_CHARACTER_MIN_LIMIT) {
             _autocompleteListViewRepresentation.value = AutocompleteListViewRepresentation.Empty
         } else {
             viewModelScope.launch {
