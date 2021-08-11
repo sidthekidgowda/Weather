@@ -21,8 +21,6 @@ class CurrentWeatherViewModel @Inject constructor(
     private val _currentLocation = MutableStateFlow("")
     private val _currentQuery = MutableStateFlow("")
 
-    val autocompleteListViewRepresentation: Flow<AutocompleteListViewRepresentation> = _autocompleteListViewRepresentation
-
     fun submitCurrentWeatherSearch(query: String) {
         _autocompleteListViewRepresentation.value = AutocompleteListViewRepresentation.Empty
         fetchCurrentWeather(query)
@@ -65,6 +63,11 @@ class CurrentWeatherViewModel @Inject constructor(
     fun setCurrentLocation(query: String) {
         _currentLocation.value = query
     }
+
+    val autocompleteListLiveData =
+        _autocompleteListViewRepresentation
+            .map { (it as? AutocompleteListViewRepresentation.AutocompleteListViewRep)?.autocompleteList }
+            .asLiveData()
 
     val availableCurrentWeatherLiveData =
         _currentWeatherViewRepresentation
