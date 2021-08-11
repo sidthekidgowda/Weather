@@ -14,7 +14,6 @@ class CurrentWeatherFragmentViewBinder(
 ) {
 
     val availableWeatherViewData = viewModel.availableCurrentWeatherLiveData
-    val autocompleteListData = viewModel.autocompleteListLiveData
     val isAutocompleteViewVisible = viewModel.isAutocompleteListVisible
     val isAutocompleteListError = viewModel.isAutocompleteListError
     val isEmpty = viewModel.isEmptyVisible
