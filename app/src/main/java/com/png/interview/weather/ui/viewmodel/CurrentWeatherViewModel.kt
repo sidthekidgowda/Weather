@@ -30,6 +30,11 @@ class CurrentWeatherViewModel @Inject constructor(
         fetchCurrentWeather(currentLocation())
     }
 
+    fun reset() {
+        _currentWeatherViewRepresentation.value = calculateCurrentWeatherState()
+        _autocompleteListViewRepresentation.value = AutocompleteListViewRepresentation.Empty
+    }
+
     private fun fetchCurrentWeather(query: String) {
         viewModelScope.launch {
             _currentWeatherViewRepresentation.value = createCurrentWeatherRepFromQueryUseCase(query)

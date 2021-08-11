@@ -21,6 +21,11 @@ class CurrentWeatherFragmentViewBinder(
     val isError = viewModel.isErrorVisible
     val input = MutableLiveData("")
 
+    init {
+        // Reset to empty text if error is shown and remove autocomplete view
+        viewModel.reset()
+    }
+
     private fun fetchCurrentWeather() {
         viewModel.setCurrentLocation(input.value!!)
         viewModel.submitCurrentWeatherSearch(input.value!!)
