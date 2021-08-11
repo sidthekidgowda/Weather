@@ -40,6 +40,7 @@
 			android:layout_width="match_parent"
 			android:layout_marginTop="8dp"
 			app:isVisible="@{viewBinder.isAutocompleteViewVisible}"
+			app:isError="@{viewBinder.isAutocompleteListError}"
 			app:layout_constraintTop_toBottomOf="@id/et_input" />
 
 		<include

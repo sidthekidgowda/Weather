@@ -7,6 +7,9 @@
         <variable
             name="isVisible"
             type="Boolean" />
+        <variable
+            name="isError"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -33,9 +36,20 @@
             android:id="@+id/autocomplete_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:visible="@{!isError}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/autocomplete_list_item"
             tools:itemCount="5"/>
+
+        <include
+            layout="@layout/loading_empty_error_text"
+            android:id="@+id/view_current_weather_empty"
+            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            app:visible="@{isError}"
+            app:text="@{@string/autocomplete_error}"
+            app:layout_constraintTop_toBottomOf="@id/et_input" />
 
     </LinearLayout>
 </layout>

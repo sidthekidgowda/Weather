@@ -83,8 +83,13 @@ class CurrentWeatherViewModel @Inject constructor(
         .map { it is CurrentWeatherViewRepresentation.Error }
         .asLiveData()
 
-    val isAutocompleteListVisible: LiveData<Boolean> =
+    val isAutocompleteListVisible =
         _autocompleteListViewRepresentation
             .map { !(it is AutocompleteListViewRepresentation.Empty) }
+            .asLiveData()
+
+    val isAutocompleteListError =
+        _autocompleteListViewRepresentation
+            .map { it is AutocompleteListViewRepresentation.Error }
             .asLiveData()
 }
